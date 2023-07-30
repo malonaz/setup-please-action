@@ -104,7 +104,8 @@ async function findLatestVersion(downloadLocation: string): Promise<string> {
     }
 
     return response.readBody()
-  } catch (error) {
-    throw new Error(`failed to get latest version: ${error.message}`)
-  }
+  } catch (error: any) {
+  let errMsg = error instanceof Error ? error.message : "Unknown error occurred";
+  throw new Error(`failed to get latest version: ${errMsg}`)
+}
 }

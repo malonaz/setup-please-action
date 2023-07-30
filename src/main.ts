@@ -17,13 +17,6 @@ async function run(): Promise<void> {
 
     const overrides: string[] = []
 
-    const buildPath = (process.env['PATH'] as string) || ''
-    if (buildPath) {
-      overrides.push(`build.path:${buildPath}`)
-    } else {
-      core.warning('PATH is empty')
-    }
-
     if (inputs.profile) {
       core.info(`Using profile ${inputs.profile}`)
 
@@ -48,11 +41,16 @@ async function run(): Promise<void> {
     // Set Please arguments
     core.exportVariable('PLZ_ARGS', buildArgs(inputs).join(' '))
 
-    // Download Please
-    await download(config)
-  } catch (error) {
-    core.setFailed(error.message)
+      // Download Please
+      await download(config)
+  } catch (error: unknown) {
+  let errorMessage = "An error occurred";
+  if (error instanceof Error) {
+    errorMessage = error.message;
   }
+  core.setFailed(errorMessage)
+}
+
 }
 
 async function post(): Promise<void> {
@@ -94,9 +92,14 @@ async function post(): Promise<void> {
         options
       )
     }
-  } catch (error) {
-    core.setFailed(error.message)
+  } catch (error: unknown) {
+  let errorMessage = "An error occurred";
+  if (error instanceof Error) {
+    errorMessage = error.message;
   }
+  core.setFailed(errorMessage)
+}
+
 }
 
 function jobName(): string {

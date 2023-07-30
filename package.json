@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sagikazarmark/setup-please-action.git"
+    "url": "git+https://github.com/malonaz/setup-please-action.git"
   },
   "keywords": [
     "actions",

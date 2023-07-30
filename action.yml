@@ -1,6 +1,6 @@
-name: 'Set up Please'
+name: 'Install and Setup Please'
 description: 'Set up Please in GitHub Actions'
-author: 'sagikazarmark'
+author: 'malonaz'
 branding:
   icon: 'target'
   color: 'purple'

@@ -17,13 +17,6 @@ async function run(): Promise<void> {
 
     const overrides: string[] = []
 
-    const buildPath = (process.env['PATH'] as string) || ''
-    if (buildPath) {
-      overrides.push(`build.path:${buildPath}`)
-    } else {
-      core.warning('PATH is empty')
-    }
-
     if (inputs.profile) {
       core.info(`Using profile ${inputs.profile}`)
 
